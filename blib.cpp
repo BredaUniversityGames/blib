@@ -1,20 +1,22 @@
-// blib.cpp : This file contains the 'main' function. Program execution begins and ends there.
-//
 
 #include <iostream>
+#include "blib_ec.h"
+
+class transform : public blib::component
+{
+public:
+    transform(int x, int y) : x(x), y(y) {}
+    int x;
+    int y;
+};
 
 int main()
 {
     std::cout << "Hello World!\n";
+
+    blib::entity_container ec;
+    auto& e = ec.create();
+    auto& t = e.create_component<transform>(1, 4);
+    t.x = 1;
+    t.y = 2;
 }
-
-// Run program: Ctrl + F5 or Debug > Start Without Debugging menu
-// Debug program: F5 or Debug > Start Debugging menu
-
-// Tips for Getting Started: 
-//   1. Use the Solution Explorer window to add/manage files
-//   2. Use the Team Explorer window to connect to source control
-//   3. Use the Output window to see build output and other messages
-//   4. Use the Error List window to view errors
-//   5. Go to Project > Add New Item to create new code files, or Project > Add Existing Item to add existing code files to the project
-//   6. In the future, to open this project again, go to File > Open > Project and select the .sln file
