@@ -23,5 +23,8 @@
     <ClInclude Include="blib_ec.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="blib_fileio.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
