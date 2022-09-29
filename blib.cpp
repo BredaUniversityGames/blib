@@ -1,6 +1,9 @@
 
 #include <iostream>
 #include "blib_ec.h"
+#include "DebugRenderer.h"
+#include "WindowWin32.h"
+
 
 class transform : public blib::component
 {
@@ -77,4 +80,18 @@ int main()
     auto* not_here_entity_ptr = ec.try_get(e_id);
     if (t_again_ptr)
         std::cout << "not_here_entity_ptr.valid = " << not_here_entity_ptr->valid() << std::endl;
+
+    //Debug Renderer
+
+    blib::WindowWin32 window = blib::WindowWin32::Create(800, 600);
+    blib::DebugRenderer::InitOpenGL(&window);
+
+    while (true)
+    {
+        blib::DebugRenderer::DrawCircle(200, 150, 55, { 0.2, 0.5, 0.4 });
+
+        blib::DebugRenderer::Render();
+    }
+
+    return 0;
 }
