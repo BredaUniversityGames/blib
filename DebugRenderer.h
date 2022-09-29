@@ -5,10 +5,10 @@ namespace blib {
 
 	struct DrawItem
 	{
-		uint32_t x;
-		uint32_t y;
-		uint32_t z;
-		uint32_t w;
+		float x;
+		float y;
+		float z;
+		float w;
 		vec3 color;
 		uint32_t glMode;
 	};

@@ -88,8 +88,11 @@ int main()
 
     while (true)
     {
-        blib::DebugRenderer::DrawCircle(200, 150, 55, { 0.2, 0.5, 0.4 });
-
+        blib::DebugRenderer::DrawLine(5, 5, 50, 50, { 1.0f, 1.0f, 1.0f });
+        blib::DebugRenderer::DrawCircle(200, 150, 55, { 0.4f, 0.1f, 1.0f });
+        blib::DebugRenderer::DrawRect(200, 150, 55, 30, { 0.7f, 0.1f, 1.0f });
+        blib::DebugRenderer::DrawFilledRect(30, 150, 55, 30, { 1.0f, 0.1f, 0.3f });
+        
         blib::DebugRenderer::Render();
     }
 
