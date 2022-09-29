@@ -1,6 +1,7 @@
 
 #include <iostream>
 #include "blib_ec.h"
+#include "blib_math.h"
 
 class transform : public blib::component
 {
@@ -77,4 +78,14 @@ int main()
     auto* not_here_entity_ptr = ec.try_get(e_id);
     if (t_again_ptr)
         std::cout << "not_here_entity_ptr.valid = " << not_here_entity_ptr->valid() << std::endl;
+
+    blib::vec3<float> vec1(0.0, 1.0f, 0.0f);
+    blib::vec3<float> vec2(1.0f, 0.0f, 0.0f);
+    blib::vec3<float> crossRes = blib::cross(vec1, vec2);
+    blib::vec3<float> normRes = blib::normalize(crossRes);
+
+    blib::vec3<float> unnormVec(10.0f, 50.0f, 150.0f);
+    float unnormLength = blib::length(unnormVec);
+    blib::vec3<float> normRes2 = blib::normalize(unnormVec);
+    float length = blib::length(normRes2);
 }
