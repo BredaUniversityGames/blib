@@ -10,8 +10,6 @@
 #undef CreateWindow
 #endif
 
-
-
 using namespace blib;
 
 static bool g_IsWindowRegistered = false;
@@ -183,18 +181,8 @@ void WindowWin32::CleanUp()
     //::UnregisterClass(wc.lpszClassName, wc.hInstance);
 }
 
-#if defined( STV_IMGUI_IMPL )
-// Forward declare message handler from imgui_impl_win32.cpp
-extern IMGUI_IMPL_API LRESULT ImGui_ImplWin32_WndProcHandler(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam);
-#endif
-
 static LRESULT CALLBACK WndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
 {
-#if defined( STV_IMGUI_IMPL )
-    if (ImGui_ImplWin32_WndProcHandler(hwnd, message, wParam, lParam))
-        return true;
-#endif
-
     WindowWin32* window = (WindowWin32*)GetWindowLongPtr(hwnd, GWLP_USERDATA);
     switch (message)
     {
