@@ -541,7 +541,12 @@ struct default_mat3
 	/*
 		Constructors
 	*/
-	default_mat3() = default;
+	default_mat3()
+	{
+		value[0] = { 1, 0, 0 };
+		value[0] = { 0, 1, 0 };
+		value[0] = { 0, 0, 1 };
+	}
 	default_mat3(T scalar)
 	{
 		value[0] = scalar;
@@ -636,7 +641,13 @@ struct default_mat4
 	/*
 		Constructors
 	*/
-	default_mat4() = default;
+	default_mat4()
+	{
+		value[0] = { 1, 0, 0, 0 };
+		value[1] = { 0, 1, 0, 0 };
+		value[2] = { 0, 0, 1, 0 };
+		value[3] = { 0, 0, 0, 1 };
+	}
 	default_mat4(T scalar)
 	{
 		value[0] = scalar;
