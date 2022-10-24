@@ -1,6 +1,7 @@
 
 #include <iostream>
 #include "blib_ec.h"
+#include "blib_fileio.h"
 
 class transform : public blib::component
 {
@@ -77,4 +78,58 @@ int main()
     auto* not_here_entity_ptr = ec.try_get(e_id);
     if (t_again_ptr)
         std::cout << "not_here_entity_ptr.valid = " << not_here_entity_ptr->valid() << std::endl;
+
+
+
+
+    /*------------------*/
+    /*      File IO     */
+    /*------------------*/
+    std::string filename = "binary_testFile.txt";
+    uint32_t a = 25000;
+
+    printf("\n");
+
+    // Binary writing
+    {
+        // Write to file
+        std::vector<char> data{};
+        for (size_t i = 0; i < 4; i++)
+            data.push_back(*(reinterpret_cast<char*>(&a) + i));
+
+        if(blib::io::write_binary_file(data, filename))
+            printf("Succesfully written binary data to file[\"%s\"]\n", filename.c_str());
+        else
+            printf("Writing binary data to file[\"%s\"] not succesfull\n", filename.c_str());
+        // Read from file
+        if (blib::io::exists(filename))
+        {
+            std::vector<char> data = blib::io::read_binary_file(filename);
+            if (data.size() > 0)
+            {
+                uint32_t reconstructed_value = 0;
+                for (size_t i = 0; i < 4; i++)
+                    *(reinterpret_cast<char*>(&reconstructed_value) + i) = data[i];
+
+                printf("Read value from file: %u\n", reconstructed_value);
+            }
+        }
+    }
+
+    // Text writing
+    {
+        filename = "text_TestFile.txt";
+
+        std::string text = "Blib file io write_text_file() test";
+        if(blib::io::write_text_file(text, filename))
+            printf("Succesfully written text data to file[\"%s\"]\n", filename.c_str());
+        else
+            printf("Writing text data to file[\"%s\"] not succesfull\n", filename.c_str());
+
+        if (blib::io::exists(filename))
+        {
+            std::string read_text = blib::io::read_text_file(filename);
+            printf("Read Text: \"%s\"\n", read_text.c_str());
+        }
+    }
 }
