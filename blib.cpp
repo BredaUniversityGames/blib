@@ -79,11 +79,16 @@ int main()
     if (t_again_ptr)
         std::cout << "not_here_entity_ptr.valid = " << not_here_entity_ptr->valid() << std::endl;
 
+
+
+
     /*------------------*/
     /*      File IO     */
     /*------------------*/
     std::string filename = "binary_testFile.txt";
     uint32_t a = 25000;
+
+    printf("\n");
 
     // Binary writing
     {
@@ -92,8 +97,10 @@ int main()
         for (size_t i = 0; i < 4; i++)
             data.push_back(*(reinterpret_cast<char*>(&a) + i));
 
-        blib::io::write_binary_file(data, filename);
-
+        if(blib::io::write_binary_file(data, filename))
+            printf("Succesfully written binary data to file[\"%s\"]\n", filename.c_str());
+        else
+            printf("Writing binary data to file[\"%s\"] not succesfull\n", filename.c_str());
         // Read from file
         if (blib::io::exists(filename))
         {
@@ -104,7 +111,7 @@ int main()
                 for (size_t i = 0; i < 4; i++)
                     *(reinterpret_cast<char*>(&reconstructed_value) + i) = data[i];
 
-                printf("\nRead value from file: %u\n", reconstructed_value);
+                printf("Read value from file: %u\n", reconstructed_value);
             }
         }
     }
@@ -114,7 +121,10 @@ int main()
         filename = "text_TestFile.txt";
 
         std::string text = "Blib file io write_text_file() test";
-        blib::io::write_text_file(text, filename);
+        if(blib::io::write_text_file(text, filename))
+            printf("Succesfully written text data to file[\"%s\"]\n", filename.c_str());
+        else
+            printf("Writing text data to file[\"%s\"] not succesfull\n", filename.c_str());
 
         if (blib::io::exists(filename))
         {
