@@ -98,5 +98,9 @@ int main()
     blib::vec3 cross0 = blib::cross(vec0, vec1);
     blib::vec3 cross1 = blib::cross(norm0, norm1);
 
+    blib::mat4 identity = blib::mat4();
+    blib::mat4 perspectiveOpenGL = blib::perspective(blib::radians(60.0f), 1.0f, 0.1f, 1000.0f);
+    blib::mat4 perspectiveDirectX = blib::perspectiveLH_ZO(blib::radians(60.0f), 1.0f, 0.1f, 1000.0f);
+
     std::cin.get();
 }
