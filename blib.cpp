@@ -1,6 +1,7 @@
 
 #include <iostream>
 #include "blib_ec.h"
+#include "blib_math.h"
 
 class transform : public blib::component
 {
@@ -77,4 +78,29 @@ int main()
     auto* not_here_entity_ptr = ec.try_get(e_id);
     if (t_again_ptr)
         std::cout << "not_here_entity_ptr.valid = " << not_here_entity_ptr->valid() << std::endl;
+
+    // Dot product
+    blib::vec3 vec0(15.0f, 89.4961230f, 0.7129837f);
+    blib::vec3 vec1(-7.81234f, 0.12f, 19.879f);
+    float dot0 = blib::dot(vec0, vec1);
+
+    // Length
+    float length0 = blib::length(vec0);
+    float length1 = blib::length(vec1);
+
+    // Normalize
+    blib::vec3 norm0 = blib::normalize(vec0);
+    blib::vec3 norm1 = blib::normalize(vec1);
+
+    // Cross product
+    vec0 = blib::vec3(0.0f, 1.0f, 0.0f);
+    vec1 = blib::vec3(1.0f, 0.0f, 0.0f);
+    blib::vec3 cross0 = blib::cross(vec0, vec1);
+    blib::vec3 cross1 = blib::cross(norm0, norm1);
+
+    blib::mat4 identity = blib::mat4();
+    blib::mat4 perspectiveOpenGL = blib::perspective(blib::radians(60.0f), 1.0f, 0.1f, 1000.0f);
+    blib::mat4 perspectiveDirectX = blib::perspectiveLH_ZO(blib::radians(60.0f), 1.0f, 0.1f, 1000.0f);
+
+    std::cin.get();
 }
