@@ -26,5 +26,8 @@
     <ClInclude Include="blib_fileio.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="blib_math.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
